@@ -2,14 +2,14 @@
 library (ggplot2)
 
 ###################
-AS<- read.table ("aziende sanitarie.csv" , header=T, sep=";",
+AS<- read.table ("data/aziende sanitarie.csv" , header=T, sep=";",
                  stringsAsFactors=F)
 str(AS)                                 # 29 aziende opedaliere
 names(AS) # "id"         "codazienda" "denom"      "dataatt"   
 head(AS)
 
 ##################
-BS<- read.table ("Branche.csv" , header=T, sep=";",
+BS<- read.table ("data/Branche.csv" , header=T, sep=";",
                  stringsAsFactors=F)
 str(BS)                                 # 79 branche
 names(BS) <- c("id" ,"cbranca","bdescr")
@@ -17,7 +17,7 @@ names(BS)                   # "id"      "cbranca" "bdescr"
 head(BS)
 BS<-BS[order(BS$cbranca),]
 ###################
-CP<- read.table ("Epres.csv" , header=T, 
+CP<- read.table ("data/Epres.csv" , header=T, 
                  sep=";", dec=",",   stringsAsFactors=F)
 str(CP)                                 # 2337 obs.
 CP$cpres<-as.factor(CP$cpres)
@@ -26,19 +26,36 @@ CP$cdiscip<-as.factor(CP$cdiscip)
 names(CP)                   #  "cdiscip" "cpres"   "descr"  
 head(CP)
 str(CP)
-barplot(table(CP$cpres))
+barplot(table(CP$cdiscip))
 
-CP$descr[CP$cdiscip==1]           # discipline 43 branche 79 che rapporto???
+prest_uro<-CP[CP$cdiscip==43,]           # discipline 43 branche 79 che rapporto???
 
-length(unique(CP$cpres))       # perche' data set 2337 e prestazioni 2053???
+length(unique(CP$cpres))       # perche' data set 2337 e prestazioni 2053 ???
 
+
+## ci sono prestazioni su piu' discipline 
 tt<-table(CP$cpres)
 str(tt)
 tt<-tt[order(tt, decreasing = T)]
-ttt<-tt[tt>3]
+ttt<-tt[tt>1]
 
+tttx<-sapply (names(ttt), function(x)  unique(CP$descr[CP$cpres==x]))
+str(tttx)
+double_pres<-cbind(names(ttt),ttt, tttx)
+colnames(double_pres)<-c("prest", "n_occ", "descr")
+str(double_pres)
+double_pres<-as.data.frame(double_pres,stringsAsFactors=F)
 
-CP[CP$cpres=="89.03",]
+write.table(double_pres, "data/double_prestazioni.txt", 
+            col.names=T, row.names=F)
+
+CPx<-CP[CP$cpres=="89.03",]
+str(CPx)
+
+ggplot(data=CPx, aes(x=cdiscip, y=cpres)) + 
+    geom_bar(stat="bin") + 
+    ggtitle("frequency of different prestazioni") 
+
 
 ##########################
 pres<- read.table ("Dettaglio_Cod_Prest.csv" , header=T, sep=";",
@@ -54,11 +71,13 @@ pres$cbranca<-as.factor(pres$cbranca)
 
 
 str(pres)                              # 295643 obs. of  6 variables
-head(pres)                              # 295643 obs. of  6 variables
+head(pres)                          
 
 
 levels(pres$cbranca)
 branche_mancanti<-BS[!BS$cbranca%in%levels(pres$cbranca),2:3]
+discipline_mancanti<-levels(CP$cdiscip)[!mycdis%in%levels(pres$cbranca)]
+
 
 dim(branche_mancanti)
 
@@ -103,3 +122,9 @@ ggplot(data=presuro_x, aes(azienda, fill = tipo)) +
 ggplot(data=presuro_x, aes(y=qta, x=azienda, fill = tipo)) + 
     geom_bar(stat="identity",show_guide = F) + 
     ggtitle("urologia in piemonte") 
+
+#####################################################################
+grep("vehicle", SCC$Short.Name, ignore.case=TRUE) & SCC$Data.Category == 'Onroad')
+losAngeles <- subset(NEI, fips == '06037' & type == 'ON-ROAD')
+laMotorVehicle <- subset(losAngeles, SCC %in% motorVehicleSCC$SCC)
+laMotorVehicleYearlyEmissions <- aggregate(Emissions ~ year, data = laMotorVehicle, sum)
