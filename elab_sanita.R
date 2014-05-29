@@ -11,7 +11,7 @@ head(AS)
 ##################
 BS<- read.table ("Branche.csv" , header=T, sep=";",
                  stringsAsFactors=F)
-str(BS)                                 # 59 branche
+str(BS)                                 # 79 branche
 names(BS) <- c("id" ,"cbranca","bdescr")
 names(BS)                   # "id"      "cbranca" "bdescr" 
 head(BS)
@@ -28,9 +28,18 @@ head(CP)
 str(CP)
 barplot(table(CP$cpres))
 
-CP$descr[CP$cdiscip==1]
+CP$descr[CP$cdiscip==1]           # discipline 43 branche 79 che rapporto???
 
-length(unique(CP$cpres))
+length(unique(CP$cpres))       # perche' data set 2337 e prestazioni 2053???
+
+tt<-table(CP$cpres)
+str(tt)
+tt<-tt[order(tt, decreasing = T)]
+ttt<-tt[tt>3]
+
+
+CP[CP$cpres=="89.03",]
+
 ##########################
 pres<- read.table ("Dettaglio_Cod_Prest.csv" , header=T, sep=";",
                    stringsAsFactors=F)
@@ -61,20 +70,36 @@ ggplot(data=pres, aes(azienda, fill = tipo)) +
 
 
 ##################################################
+pres<- read.table ("Dettaglio_Cod_Prest.csv" , header=T, sep=";",
+                   stringsAsFactors=F)
+names(pres) <- c("id" ,"azienda", "tipo", "cbranca","cpres", "qta" )
+
 presuro<- pres[pres$cbranca==43,]
 presuro$azienda<-as.factor(presuro$azienda)
+presuro$tipo<-as.factor(presuro$tipo)
 presuro$cpres<-as.factor(presuro$cpres)
 presuro$cbranca<-as.factor(presuro$cbranca)
 
 str(presuro)
+summary(presuro)
 
-cpresuro<-unique(presuro$cpres)
 table(presuro$cpres)
+cpresuro<-levels(presuro$cpres)
 
-CP[CP$cpres%in%levels(cpresuro),])
+dim(CP[CP$cpres%in%cpresuro,])
 
-CP$cpres[1:10]
-ggplot(data=presuro, aes(azienda, fill = tipo)) + 
+presuro_x<-presuro[presuro$cpres=="89.7",]
+str(presuro_x)
+summary(presuro_x)
+
+presuro_x<-presuro_x[order(presuro_x$azienda,presuro_x$tipo),]
+head(presuro_x)
+
+
+ggplot(data=presuro_x, aes(azienda, fill = tipo)) + 
     geom_bar(show_guide = F) + 
     ggtitle("urologia in piemonte") 
 
+ggplot(data=presuro_x, aes(y=qta, x=azienda, fill = tipo)) + 
+    geom_bar(stat="identity",show_guide = F) + 
+    ggtitle("urologia in piemonte") 
