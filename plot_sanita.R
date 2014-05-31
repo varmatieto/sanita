@@ -17,12 +17,11 @@ length(unique(pres$cbranca))
 
 aziende<-read.table("data/aziende.txt", head=T,
                     stringsAsFactors=F)
-str(aziende)
+
 
 library (plyr)
 
-prestot<-ddply(pres, .(azienda,tipo,cbranca), summarise,
-               qta= sum(qta))
+prestot<-ddply(pres, .(azienda,tipo,cbranca), summarise,               qta= sum(qta))
 str(prestot)
 head(prestot)
 
@@ -163,6 +162,46 @@ ggplot(data=pres_89.7, aes(x=factor(azienda), y=qta/1000000, fill = tipo)) +
 
 ggsave("plot/visita_gen.png", width=8, height=8, dpi=100)
 
+
+##############################################
+str(aziende)
+myaz<-aziende$cazienda
+
+
+str(pres)
+
+pres_pu <- subset(pres, tipo == "Pub")
+str (pres_pu)
+qtaaz<-sapply (myaz, function(x) sum (pres$qta[pres$azienda == x]))
+qtaazvg<-sapply (myaz,function(x) sum (pres_pu$qta[pres_pu$azienda ==  x &
+              pres_pu$cpres == "89.7"]))
+per_vg<- round(100*qtaazvg/qtaaz,1)
+per_vg [is.na(per_vg)]<-0
+
+summary(per_vg)
+
+pres_pr <- subset(pres, tipo == "Priv")
+str (pres_pr)
+qtaazr<-sapply (myaz, function(x) sum (pres$qta[pres$azienda == x]))
+qtaazvgr<-sapply (myaz,function(x) sum (pres_pr$qta[pres_pr$azienda ==  x &
+                                                     pres_pr$cpres == "89.7"]))
+per_vgr<- round(100*qtaazvgr/qtaazr,1)
+per_vgr [is.na(per_vgr)]<-0
+
+summary(per_vgr)
+
+aziendevgu<-cbind(aziende, per_visite=per_vg, tipo= c("Pub") )
+aziendevgr<-cbind(aziende, per_visite=per_vgr, tipo= c("Pri") )
+ 
+aziendevg<-rbind (aziendevgu, aziendevgr)
+head (aziendevg)
+
+ggplot(data=aziendevg, aes(x=dazienda, y=per_visite, fill=tipo)) + 
+  geom_bar(stat="identity" ) + coord_flip() +  
+  ggtitle("% visite su totale prestazioni")+ 
+  xlab("Azienda") + ylab(" ") 
+
+ggsave("plot/per_visita_gen.png", width=8, height=8, dpi=100)
 
 
 
