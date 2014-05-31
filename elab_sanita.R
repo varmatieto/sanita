@@ -54,7 +54,8 @@ ggplot(data=CP, aes(x=ddiscip, fill="gold")) +
 #  theme(axis.text.x  = element_text(angle=45, vjust=0.5, size=8))
 
 
-# prest_uro<-CP[CP$cdiscip==43,]           # discipline 43 branche 79 che rapporto???
+CP[CP$cdiscip==64,]         #prestazioni in oncologia
+
 
 length(unique(CP$cpres))       # perche' data set 2337 e prestazioni 2053 ???
 
