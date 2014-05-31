@@ -63,6 +63,29 @@ ggsave("plot/aziende.png", width=8, height=8, dpi=100)
 
 # theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=8))
 
+prestoto_a213 <- subset(prestoto, azienda == 213 & cbranca != 98)
+str(prestoto_a213)
+
+prestoto_a213 <- prestoto_a213[order(prestoto_a213$tipo),]
+
+ggplot(data=prestoto_a213, aes(x=factor(cbranca), y=qta/1e+06, fill = tipo)) + 
+  geom_bar(stat="identity") + coord_flip() +  
+  ggtitle("totale prestazioni 2012 per AL")+ 
+  xlab("cod_prestazione") + ylab("n. prestazioni ") 
+
+ggsave("plot/prestazioniAL.png", width=8, height=8, dpi=100)
+
+prestoto_a201 <- subset(prestoto, azienda == 201 & cbranca != 98)
+str(prestoto_a201)
+
+prestoto_a201 <- prestoto_a201[order(prestoto_a201$tipo),]
+
+ggplot(data=prestoto_a201, aes(x=factor(cbranca), y=qta/1e+06, fill = tipo)) + 
+  geom_bar(stat="identity") + coord_flip() +  
+  ggtitle("totale prestazioni 2012 per TO01")+ 
+  xlab("cod_prestazione") + ylab("n. prestazioni ") 
+
+ggsave("plot/prestazioniTO01.png", width=8, height=8, dpi=100)
 
 prestoto_no98 <- subset(prestoto, cbranca != 98)
 
