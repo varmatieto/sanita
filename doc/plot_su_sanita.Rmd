@@ -110,7 +110,7 @@ ggplot(data=prestoto_98, aes(x=factor(nomeazienda), y=qta/1e+06, fill = tipo)) +
     xlab("Azienda") + ylab("prestazioni in Ml.") 
 ```
 
-La somma complessiva delle prestazioni si ripartisce per la disciplina 98 "UROLOGIA"  sulle diverse aziende sanitarie secondo la **figura 4**.
+La somma complessiva delle prestazioni si ripartisce per la disciplina 43 "UROLOGIA"  sulle diverse aziende sanitarie secondo la **figura 4**.
 
 
 
@@ -123,5 +123,53 @@ ggplot(data=prestoto_43, aes(x=factor(nomeazienda), y=qta, fill = tipo)) +
   xlab("Azienda") + ylab("n. prestazioni ") 
 ```
 
+Osserviamo ora le prestazioni svolte dall' azienda "213" corrispndente ad ALESSANDRIA in **figura 5**.
+
+```{r plot5, fig.width= 9, echo=FALSE}
+prestoto_a213 <- subset(prestoto, azienda == 213 & cbranca != 98)
+# str(prestoto_a213)
+
+prestoto_a213 <- prestoto_a213[order(prestoto_a213$tipo),]
+
+ggplot(data=prestoto_a213, aes(x=factor(cbranca), y=qta/1e+06, fill = tipo)) + 
+  geom_bar(stat="identity", show_guide = F) + coord_flip() +  
+  ggtitle("totale prestazioni per AL")+ 
+  xlab("cod_prestazione") + ylab("n. prestazioni ") 
+```
+
+Osserviamo ora le prestazioni svolte dall' azienda "909" corrispndente ad CITTA_SALUTE in **figura 6**.
+
+```{r plot6, fig.width= 9, echo=FALSE}
+prestoto_a909 <- subset(prestoto, azienda == 909 & cbranca != 98)
+# str(prestoto_a213)
+
+prestoto_a213 <- prestoto_a909[order(prestoto_a909$tipo),]
+
+ggplot(data=prestoto_a909, aes(x=factor(cbranca), y=qta/1e+06, fill = tipo)) + 
+  geom_bar(stat="identity", show_guide = F, fill="#0099CC") + coord_flip() +  
+  ggtitle("totale prestazioni per CITTA_SALUTE")+ 
+  xlab("cod_prestazione") + ylab("n. prestazioni ") 
+```
 
 
+```{r, echo=FALSE}
+pres_89.7 <- subset(pres, cpres == "89.7")
+sum89<-round ((sum (pres_89.7$qta)/sum (pres$qta))*100,2)
+lcpres<-length(unique(pres$cpres))
+
+```
+Da ultimo riportiamo la distribuzione di una singola prestazione con codice "89.7" e significato "VISITA GENERALE" che da sola totalizza `r sum89` %
+di tutte le `r lcpres` prestazioni.
+
+```{r plot7, fig.width= 9, echo=FALSE}
+
+pres_89.7 <- pres_89.7[order(pres_89.7$tipo),]
+
+ggplot(data=pres_89.7, aes(x=factor(azienda), y=qta/1000000, fill = tipo)) + 
+  geom_bar(stat="identity", show_guide = F) + coord_flip() +  
+  ggtitle("visita generale (89.7) per azienda")+ 
+  xlab("Azienda") + ylab("n. prestazioni in Ml.") +
+  scale_x_discrete(breaks=aziende$cazienda, 
+                   labels=aziende$dazienda)
+
+```

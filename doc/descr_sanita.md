@@ -167,7 +167,7 @@ Ci sono 43 codici disciplina in questo dataset. Nel dataset *Branca o Disciplina
 
 
 Ci sono poi prestazioni che compaiono su varie specialità.
-Ad esempio la prestazione 81.92, che corrisponde a INIEZIONE DI SOSTANZE TERAPEUTICHE NELL ARTICOLAZIONE O NEL LEGAMENTO è presente in varie discipline.
+Ad esempio la prestazione 81.92, che corrisponde a INIEZIONE DI SOSTANZE TERAPEUTICHE NELL ARTICOLAZIONE O NEL LEGAMENTO è presente in quattro discipline.
 
 
 ```
@@ -178,7 +178,3 @@ Ad esempio la prestazione 81.92, che corrisponde a INIEZIONE DI SOSTANZE TERAPEU
 ```
 
 
-
-
-
-La somma complessiva di oltre 73 miloni di prestazioni si ripartisce sulle 27 aziende.

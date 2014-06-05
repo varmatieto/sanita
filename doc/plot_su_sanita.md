@@ -55,11 +55,23 @@ La somma complessiva delle prestazioni si ripartisce per la disciplina 98 "ANALI
 
 ![plot of chunk plot3](figure/plot3.png) 
 
-La somma complessiva delle prestazioni si ripartisce per la disciplina 98 "UROLOGIA"  sulle diverse aziende sanitarie secondo la **figura 4**.
+La somma complessiva delle prestazioni si ripartisce per la disciplina 43 "UROLOGIA"  sulle diverse aziende sanitarie secondo la **figura 4**.
 
 
 
 ![plot of chunk plot4](figure/plot4.png) 
 
+Osserviamo ora le prestazioni svolte dall' azienda "213" corrispndente ad ALESSANDRIA in **figura 5**.
+
+![plot of chunk plot5](figure/plot5.png) 
+
+Osserviamo ora le prestazioni svolte dall' azienda "909" corrispndente ad CITTA_SALUTE in **figura 6**.
+
+![plot of chunk plot6](figure/plot6.png) 
 
 
+
+Da ultimo riportiamo la distribuzione di una singola prestazione con codice "89.7" e significato "VISITA GENERALE" che da sola totalizza 3.17 %
+di tutte le 1796 prestazioni.
+
+![plot of chunk plot7](figure/plot7.png) 

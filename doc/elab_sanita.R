@@ -2,7 +2,7 @@
 library (ggplot2)
 
 ###################
-AS<- read.table ("data/aziende sanitarie.csv" , header=T, sep=";",
+AS<- read.table ("~/GitHub/sanita/data/aziende sanitarie.csv" , header=T, sep=";",
                  stringsAsFactors=F)
 str(AS)                                 # 29 aziende opedaliere
 names(AS) # "id"         "codazienda" "denom"      "dataatt"   
@@ -13,7 +13,7 @@ head(AS)
 
 
 ##################
-BS<- read.table ("data/Branche.csv" , header=T, sep=";",
+BS<- read.table ("~/GitHub/sanita/data/Branche.csv" , header=T, sep=";",
                  stringsAsFactors=F)
 str(BS)                                 # 79 branche
 names(BS) <- c("id" ,"cbranca","bdescr")
@@ -22,7 +22,7 @@ head(BS)
 BS<-BS[order(BS$cbranca),]
 
 ###################
-CPx<- read.table ("data/Elenco_Regionale_Prestazioni_1.csv" , header=T, 
+CPx<- read.table ("~/GitHub/sanita/data/Elenco_Regionale_Prestazioni_1.csv" , header=T, 
                  sep=";", dec=",",   stringsAsFactors=F)
 str(CPx)                                 # 2337 obs.
 head(CPx)                                 # 2337 obs.
@@ -75,7 +75,7 @@ double_pres<-double_pres[order(double_pres$n_occ, decreasing = T),]
 
 
 ###################
-CP<- read.table ("data/Epres.csv" , header=T, 
+CP<- read.table ("~/GitHub/sanita/data/Epres.csv" , header=T, 
                  sep=";", dec=",",   stringsAsFactors=F)
 str(CP)                                 # 2337 obs.
 head(CP)                                 # 2337 obs.
@@ -116,7 +116,7 @@ length(unique(CP$cpres))       # perche' data set 2337 e prestazioni 2053 ???
 
 ## ci sono prestazioni su piu' discipline 
 
-CPz<- read.table ("data/Epres.csv" , header=T, 
+CPz<- read.table ("~/GitHub/sanita/data/Epres.csv" , header=T, 
                  sep=";", dec=",",   stringsAsFactors=F)
 str(CPz)                                 # 2337 obs.
 mycdiscip<-unique (CPz$cdiscip)
@@ -125,7 +125,7 @@ myddiscip<-sapply( mycdiscip, function(x) BS$bdescr[BS$cbranca==x])
 
 mydiscip<-cbind(mycdiscip,myddiscip)
 
-write.table(mydiscip, "data/mydiscip.txt", 
+write.table(mydiscip, "~/GitHub/sanita/data/mydiscip.txt", 
             col.names=T, row.names=F)
 
 str(BS)
@@ -140,7 +140,7 @@ entrambe[BS$cbranca %in% mycdiscip]<-c("si")
 BSz<-cbind(branca=BS[,2], entrambe, descrizione=BS[,3] )
 BSz
 
-write.table(BSz, "data/branca_disciplina.txt", 
+write.table(BSz, "~/GitHub/sanita/data/branca_disciplina.txt", 
             col.names=T, row.names=F)
 
 
@@ -165,7 +165,7 @@ double_pres<-as.data.frame(double_pres,stringsAsFactors=F)
 double_pres$n_occ<-as.numeric(double_pres$n_occ)
 double_pres<-double_pres[order(double_pres$n_occ, decreasing = T),]
 
-write.table(double_pres, "data/double_prestazioni.txt", 
+write.table(double_pres, "~/GitHub/sanita/data/double_prestazioni.txt", 
             col.names=T, row.names=F)
 
 ttt_list<-sapply (names(ttt), function(x)  CPz$cdiscip[CPz$cprest==x])
@@ -191,7 +191,7 @@ for (r in 1: length(ttt_list))
   
 }
 
-write.table(mtx_double, "data/mtx_double.txt", 
+write.table(mtx_double, "~/GitHub/sanita/data/mtx_double.txt", 
             col.names=T, row.names=T)
 
 
@@ -202,7 +202,7 @@ ggplot(data=double_pres, aes(x=cdiscip, y=cprest)) +
 
 
 ##########################
-pres<- read.table ("data/Dettaglio_Cod_Prest.csv" , header=T, sep=";",
+pres<- read.table ("~/GitHub/sanita/data/Dettaglio_Cod_Prest.csv" , header=T, sep=";",
                    stringsAsFactors=F)
 
 
@@ -227,7 +227,7 @@ ggplot(data=pres, aes(x=factor(azienda), y=qta/1e+06, fill = tipo)) +
   ggtitle("prestazioni per azienda")+ 
   xlab("Azienda") + ylab("prestazioni in Ml.") 
 
-aziende<-read.table("data/aziende.txt", head=T,
+aziende<-read.table("~/GitHub/sanita/data/aziende.txt", head=T,
                     stringsAsFactors=F)
 str(aziende)
 
@@ -256,7 +256,7 @@ ggplot(data=prestoto, aes(x=factor(nomeazienda), y=qta/1e+06, fill = tipo)) +
   geom_bar(stat="identity", show_guide = F) + coord_flip() +  
   ggtitle("prestazioni per azienda")+ 
   xlab("Azienda") + ylab("prestazioni in Ml.") 
-ggsave("plot/aziende.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/aziende.png", width=8, height=8, dpi=100)
 
 
 +
@@ -270,7 +270,7 @@ ggplot(data=prestoto_no98, aes(x=factor(cbranca), y=qta/1e+06, fill = tipo)) +
   geom_bar(stat="identity", show_guide = F) + coord_flip() +  
   ggtitle("prestazioni per branca")+ 
   xlab("cod_prestazione") + ylab("n. prestazioni ") 
-ggsave("plot/prestazioni.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/prestazioni.png", width=8, height=8, dpi=100)
 
 
 
@@ -283,7 +283,7 @@ ggplot(data=prestoto_98, aes(x=factor(nomeazienda), y=qta, fill = tipo)) +
     geom_bar(stat="identity", show_guide = F) + coord_flip() +  
     ggtitle("prestazioni di analisi per azienda")+ 
     xlab("Azienda") + ylab("n. prestazioni ") 
-ggsave("plot/analisi.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/analisi.png", width=8, height=8, dpi=100)
 
 prestoto_43 <- subset(prestoto, cbranca == 43)
 
@@ -291,7 +291,7 @@ ggplot(data=prestoto_43, aes(x=factor(nomeazienda), y=qta, fill = tipo)) +
   geom_bar(stat="identity", show_guide = F) + coord_flip() +  
   ggtitle("prestazioni urologia per azienda")+ 
   xlab("Azienda") + ylab("n. prestazioni ") 
-ggsave("plot/urologia.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/urologia.png", width=8, height=8, dpi=100)
 
 prestoto_64 <- subset(prestoto, cbranca == 64)
 
@@ -299,7 +299,7 @@ ggplot(data=prestoto_64, aes(x=factor(nomeazienda), y=qta, fill = tipo)) +
   geom_bar(stat="identity") + coord_flip() +  
   ggtitle("prestazioni oncologia per azienda")+ 
   xlab("Azienda") + ylab("n. prestazioni ") 
-ggsave("plot/oncologia.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/oncologia.png", width=8, height=8, dpi=100)
 
 
 prestoto_29 <- subset(prestoto, cbranca == 29)
@@ -308,7 +308,7 @@ ggplot(data=prestoto_29, aes(x=factor(nomeazienda), y=qta, fill = tipo)) +
   geom_bar(stat="identity") + coord_flip() +  
   ggtitle("prestazioni nefrologia per azienda")+ 
   xlab("Azienda") + ylab("n. prestazioni ") 
-ggsave("plot/nefrologia.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/nefrologia.png", width=8, height=8, dpi=100)
 
 prestoto_56 <- subset(prestoto, cbranca == 56)
 
@@ -316,7 +316,7 @@ ggplot(data=prestoto_56, aes(x=factor(nomeazienda), y=qta, fill = tipo)) +
   geom_bar(stat="identity") + coord_flip() +  
   ggtitle("prestazioni recupero funzionale per azienda")+ 
   xlab("Azienda") + ylab("n. prestazioni ") 
-ggsave("plot/recupero.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/recupero.png", width=8, height=8, dpi=100)
 
 , show_guide = F
 ##################################################

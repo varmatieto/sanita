@@ -1,6 +1,6 @@
 # archivio sintetico sanita 2012
 
-pres<- read.table ("data/Dettaglio_Cod_Prest.csv" , header=T, sep=";",
+pres<- read.table ("~/GitHub/sanita/data/Dettaglio_Cod_Prest.csv" , header=T, sep=";",
                    stringsAsFactors=F)
 
 
@@ -14,8 +14,13 @@ sum (pres$qta[pres$cbranca == 98])
 
 length(unique(pres$azienda))
 length(unique(pres$cbranca))
+length(unique(pres$cpres))
 
-aziende<-read.table("data/aziende.txt", head=T,
+ttcpres<-(table(pres$cpres))
+max (ttcpres)
+
+
+aziende<-read.table("~/GitHub/sanita/data/aziende.txt", head=T,
                     stringsAsFactors=F)
 
 
@@ -39,12 +44,12 @@ unique(preototo$azienda)[!unique(preototo$azienda)%in%aziende$cazienda]
 head(preototo)
 str(preototo)
 
-write.table(preototo, "data/prestoto.txt", 
+write.table(preototo, "~/GitHub/sanita/data/prestoto.txt", 
             col.names=T, row.names=F)
 
 ##################################################################
 
-prestoto<- read.table ("data/prestoto.txt" , header=T, sep=" ",
+prestoto<- read.table ("~/GitHub/sanita/data/prestoto.txt" , header=T, sep=" ",
                    stringsAsFactors=F)
 
 head(prestoto)
@@ -57,7 +62,7 @@ ggplot(data=prestoto, aes(x=factor(nomeazienda), y=qta/1e+06, fill = tipo)) +
   ggtitle("totale prestazioni 2012 per azienda")+ 
   xlab("Azienda") + ylab("n. prestazioni in Ml.")
 
-ggsave("plot/aziende.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/aziende.png", width=8, height=8, dpi=100)
 
 
 # theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=8))
@@ -72,7 +77,7 @@ ggplot(data=prestoto_a213, aes(x=factor(cbranca), y=qta/1e+06, fill = tipo)) +
   ggtitle("totale prestazioni 2012 per AL")+ 
   xlab("cod_prestazione") + ylab("n. prestazioni ") 
 
-ggsave("plot/prestazioniAL.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/prestazioniAL.png", width=8, height=8, dpi=100)
 
 prestoto_a201 <- subset(prestoto, azienda == 201 & cbranca != 98)
 str(prestoto_a201)
@@ -84,7 +89,7 @@ ggplot(data=prestoto_a201, aes(x=factor(cbranca), y=qta/1e+06, fill = tipo)) +
   ggtitle("totale prestazioni 2012 per TO01")+ 
   xlab("cod_prestazione") + ylab("n. prestazioni ") 
 
-ggsave("plot/prestazioniTO01.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/prestazioniTO01.png", width=8, height=8, dpi=100)
 
 prestoto_no98 <- subset(prestoto, cbranca != 98)
 
@@ -96,7 +101,7 @@ ggplot(data=prestoto_no98, aes(x=factor(cbranca), y=qta/1e+06, fill = tipo)) +
   ggtitle("totale prestazioni 2012 per branca")+ 
   xlab("cod_prestazione") + ylab("n. prestazioni ") 
 
-ggsave("plot/prestazioni.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/prestazioni.png", width=8, height=8, dpi=100)
 
 
 
@@ -109,7 +114,7 @@ ggplot(data=prestoto_43, aes(x=factor(nomeazienda), y=qta, fill = tipo)) +
   geom_bar(stat="identity") + coord_flip() +  
   ggtitle("prestazioni urologia (43) per azienda")+ 
   xlab("Azienda") + ylab("n. prestazioni ") 
-ggsave("plot/urologia.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/urologia.png", width=8, height=8, dpi=100)
 
 prestoto_64 <- subset(prestoto, cbranca == 64)
 
@@ -118,7 +123,7 @@ ggplot(data=prestoto_64, aes(x=factor(nomeazienda), y=qta, fill = tipo)) +
   ggtitle("prestazioni oncologia (64) per azienda")+ 
   xlab("Azienda") + ylab("n. prestazioni ") 
 
-ggsave("plot/oncologia.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/oncologia.png", width=8, height=8, dpi=100)
 
 
 prestoto_29 <- subset(prestoto, cbranca == 29)
@@ -127,7 +132,7 @@ ggplot(data=prestoto_29, aes(x=factor(nomeazienda), y=qta, fill = tipo)) +
   geom_bar(stat="identity") + coord_flip() +  
   ggtitle("prestazioni nefrologia per azienda")+ 
   xlab("Azienda") + ylab("n. prestazioni ") 
-ggsave("plot/nefrologia.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/nefrologia.png", width=8, height=8, dpi=100)
 
 prestoto_56 <- subset(prestoto, cbranca == 56)
 
@@ -136,7 +141,7 @@ ggplot(data=prestoto_56, aes(x=factor(nomeazienda), y=qta, fill = tipo)) +
   ggtitle("prestazioni recupero funzionale (56) per azienda")+ 
   xlab("Azienda") + ylab("n. prestazioni ")
 
-ggsave("plot/recupero.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/recupero.png", width=8, height=8, dpi=100)
 
 prestoto_98 <- subset(prestoto, cbranca == 98)
 
@@ -145,7 +150,7 @@ ggplot(data=prestoto_98, aes(x=factor(nomeazienda), y=qta/1000000, fill = tipo))
   ggtitle("analisi di laboratorio (98) per azienda")+ 
   xlab("Azienda") + ylab("n. prestazioni  in Ml.")
 
-ggsave("plot/analisi.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/analisi.png", width=8, height=8, dpi=100)
 
 
 pres_89.7 <- subset(pres, cpres == "89.7")
@@ -160,7 +165,7 @@ ggplot(data=pres_89.7, aes(x=factor(azienda), y=qta/1000000, fill = tipo)) +
   scale_x_discrete(breaks=aziende$cazienda, 
                    labels=aziende$dazienda)
 
-ggsave("plot/visita_gen.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/visita_gen.png", width=8, height=8, dpi=100)
 
 
 ##############################################
@@ -201,7 +206,7 @@ ggplot(data=aziendevg, aes(x=dazienda, y=per_visite, fill=tipo)) +
   ggtitle("% visite su totale prestazioni")+ 
   xlab("Azienda") + ylab(" ") 
 
-ggsave("plot/per_visita_gen.png", width=8, height=8, dpi=100)
+ggsave("~/GitHub/sanita/plot/per_visita_gen.png", width=8, height=8, dpi=100)
 
 
 
