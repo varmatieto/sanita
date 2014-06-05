@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Prestazioni sanitarie in Regione Piemonte</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h2>Prestazioni sanitarie in Regione Piemonte</h2>
+
+<h3>Fonte</h3>
+
+<p>Sul sito dedicati agli <strong>Opendata</strong> <a href="http://www.dati.piemonte.it">http://www.dati.piemonte.it</a>  sono stai pubblicati le &ldquo;Prestazioni sanitarie erogate per tipologia di prestazione&rdquo;.</p>
+
+<p>Il file è accessibile all&#39;indirizzo:
+<a href="http://www.dati.piemonte.it/catalogodati/dato/100742-prestazioni-sanitarie-erogate-per-tipologia-di-prestazione.html">http://www.dati.piemonte.it/catalogodati/dato/100742-prestazioni-sanitarie-erogate-per-tipologia-di-prestazione.html</a></p>
+
+<p>Nel dataset sono riportati i volumi di <strong>prestazioni sanitarie</strong>, intesi come quantità di prestazioni erogate per azienda sanitaria, con l&#39;evidenza della tipologia di struttura erogatrice ( pubblica o privata
+), del codice di prestazione e della relativa branca specialistica, nell&#39;anno 2012 a livello regionale. </p>
+
+<p>Insieme al database delle prestazioni sono disponibili alcuni datset  di supporto che riguardano:</p>
+
+<ul>
+<li><p>il Catalogo delle prestazioni sanitarie,</p></li>
+<li><p>l&#39;elenco delle Aziende Sanitarie.</p></li>
+</ul>
+
+<p>Il Catalogo delle <strong>prestazioni specialistiche sanitarie</strong> si riferisce come da descrizione all&#39;:
+<em>elenco delle prestazioni erogate dalla Regione Piemonte ai sensi della DGR 11-6036 del 02 luglio 2013, effettuate a livello ambulatoriale e non ambulatoriale o riferite a particolari attivita&#39;  svolte in attuazione di funzioni specificatamente attribuite, erogabili nell&#39; ambito del servizio sanitario regionale.</em> </p>
+
+<p>Il dato è presentato su 2 tabelle: </p>
+
+<ul>
+<li><p>elenco delle Prestazioni ed</p></li>
+<li><p>elenco delle Branche ( o Discipline).</p></li>
+</ul>
+
+<p>Quest&#39;ultimo utile per la decodifica del codice &ldquo;disciplina&rdquo; dell&#39;elenco delle prestazioni. </p>
+
+<p>Nell&#39;elenco delle <strong>Aziende Sanitarie</strong> per ogni azienda sono indicati il codice azienda, la denominazione e la data di attivazione.</p>
+
+<h3>Caratteristiche dei databases</h3>
+
+<p>Il database <strong>prestazioni sanitarie</strong>, contiene 295643 osservazioni su  5 variabili.</p>
+
+<p>Ciascuna osservazione riporta:</p>
+
+<ul>
+<li><p>il codice azienda sanitaria, </p></li>
+<li><p>il codice prestazione, </p></li>
+<li><p>la relativa branca, </p></li>
+<li><p>l&#39;indicazione pubblico o privato,</p></li>
+<li><p>la quantità di prestazioni erogate.</p></li>
+</ul>
+
+<p>Grazie al software statistico opensource R si riportano alcune prime elaborazioni.</p>
+
+<p>La somma complessiva di oltre 73 miloni di prestazioni si ripartisce sulle 27 aziende.</p>
+
+</body>
+
+</html>
+

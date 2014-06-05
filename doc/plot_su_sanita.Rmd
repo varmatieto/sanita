@@ -1,0 +1,127 @@
+Prestazioni sanitarie in Regione Piemonte
+----------------------------
+
+### Fonte
+
+Sul sito dedicati agli [Opendata] (http://www.dati.piemonte.it)  sono stai pubblicati le [Prestazioni sanitarie erogate per tipologia di prestazione] (http://www.dati.piemonte.it/catalogodati/dato/100742-prestazioni-sanitarie-erogate-per-tipologia-di-prestazione.html ).
+
+Il database *Prestazioni Sanitarie*, contiene 295643 osservazioni su  5 variabili.
+
+Ciascuna osservazione riporta:
+
+- il codice azienda sanitaria, 
+
+- il codice prestazione, 
+
+- la relativa branca, 
+
+- l'indicazione pubblico o privato,
+
+- la quantità di prestazioni erogate.
+
+Le prime osservazioni del database risultano:
+
+```{r pres, echo=FALSE, cache=TRUE }
+pres<- read.table ("~/GitHub/sanita/data/Dettaglio_Cod_Prest.csv" , header=T, sep=";",
+                   stringsAsFactors=F)
+
+
+names(pres) <- c("id" ,"azienda", "tipo", "cbranca","cpres", "qta" )
+pres$azienda<-as.factor(pres$azienda)
+pres$cpres<-as.factor(pres$cpres)
+pres$cbranca<-as.factor(pres$cbranca)
+
+
+
+
+# str(pres)                              # 295643 obs. of  6 variables
+head(pres) 
+
+```
+
+
+
+La somma complessiva delle prestazioni è oltre 73 miloni. 
+
+La somma complessiva delle prestazioni si ripartisce sulle 27 aziende secondo la **figura 1** ( dove sono riportate in rosso le prestazioni in strutture private, in blu quelle in strutture pubbliche).
+
+
+
+```{r plot1, fig.width= 9, echo=FALSE }
+aziende<-read.table("~/GitHub/sanita/data/aziende.txt", head=T,
+                    stringsAsFactors=F)
+#str(aziende)
+
+library (plyr)
+
+prestot<-ddply(pres, .(azienda,tipo,cbranca), summarise,
+              qta= sum(qta))
+#str(prestot)
+#head(prestot)
+
+nomeazienda<-vector (length=919)
+#str(nomeazienda)
+prestoto<-cbind(prestot, nomeazienda) 
+#str(prestoto)
+for(i in 1:919)
+{
+  prestoto$nomeazienda[i]<-aziende$dazienda[aziende$cazienda==prestoto$azienda[i]]
+}
+
+# unique(prestoto$azienda)[!unique(prestoto$azienda)%in%aziende$cazienda]
+
+#head(prestoto)
+
+library(ggplot2)
+ggplot(data=prestoto, aes(x=factor(nomeazienda), y=qta/1e+06, fill = tipo)) + 
+  geom_bar(stat="identity", show_guide = F) + coord_flip() +  
+  ggtitle("prestazioni per azienda")+ 
+  xlab("Azienda") + ylab("prestazioni in Ml.") 
+
+```
+
+La somma complessiva delle prestazioni si ripartisce sulle 43  discipline  presenti nel dataset secondo la **figura 2**.
+
+Non e' stata qui riportata la disciplina 98 "ANALISI DI LABORATORIO" che totalizza, da sola, oltre 50 milioni di prestazioni.
+
+
+```{r plot2, fig.width= 9, echo=FALSE }
+
+prestoto_no98 <- subset(prestoto, cbranca != 98)
+prestoto_no98 <- prestoto_no98[order(prestoto_no98$tipo),]
+
+ggplot(data=prestoto_no98, aes(x=factor(cbranca), y=qta/1e+06, fill = tipo)) + 
+  geom_bar(stat="identity", show_guide = F) + coord_flip() +  
+  ggtitle("prestazioni per branca")+ 
+  xlab("cod_prestazione") + ylab("prestazioni in Ml.") 
+
+```
+
+La somma complessiva delle prestazioni si ripartisce per la disciplina 98 "ANALISI DI LABORATORIO"  sulle diverse aziende sanitarie secondo la **figura 3**.
+
+
+
+```{r,plot3, fig.width= 9, echo=FALSE }
+prestoto_98 <- subset(prestoto, cbranca == 98)
+
+ggplot(data=prestoto_98, aes(x=factor(nomeazienda), y=qta/1e+06, fill = tipo)) + 
+    geom_bar(stat="identity", show_guide = F) + coord_flip() +  
+    ggtitle("prestazioni di analisi per azienda")+ 
+    xlab("Azienda") + ylab("prestazioni in Ml.") 
+```
+
+La somma complessiva delle prestazioni si ripartisce per la disciplina 98 "UROLOGIA"  sulle diverse aziende sanitarie secondo la **figura 4**.
+
+
+
+```{r,plot4, fig.width= 9, echo=FALSE }
+prestoto_43 <- subset(prestoto, cbranca == 43)
+
+ggplot(data=prestoto_43, aes(x=factor(nomeazienda), y=qta, fill = tipo)) + 
+  geom_bar(stat="identity", show_guide = F) + coord_flip() +  
+  ggtitle("prestazioni urologia per azienda")+ 
+  xlab("Azienda") + ylab("n. prestazioni ") 
+```
+
+
+

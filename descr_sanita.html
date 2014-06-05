@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Prestazioni sanitarie in Regione Piemonte</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h2>Prestazioni sanitarie in Regione Piemonte</h2>
+
+<h3>Fonte</h3>
+
+<p>Sul sito dedicati agli <a href="http://www.dati.piemonte.it">Opendata</a>  sono stai pubblicati le <a href="http://www.dati.piemonte.it/catalogodati/dato/100742-prestazioni-sanitarie-erogate-per-tipologia-di-prestazione.html">Prestazioni sanitarie erogate per tipologia di prestazione</a>.</p>
+
+<p>Nel dataset sono riportati i volumi di <strong>prestazioni sanitarie</strong>, intesi come quantità di prestazioni erogate per azienda sanitaria, con l&#39;evidenza della tipologia di struttura erogatrice ( pubblica o privata
+), del codice di prestazione e della relativa branca specialistica, nell&#39;anno 2012 a livello regionale. </p>
+
+<p>Insieme al database delle prestazioni sono disponibili alcuni datset  di supporto che riguardano:</p>
+
+<ul>
+<li><p>il Catalogo delle prestazioni sanitarie,</p></li>
+<li><p>l&#39;elenco delle Aziende Sanitarie.</p></li>
+</ul>
+
+<p>Il Catalogo delle <strong>prestazioni specialistiche sanitarie</strong> si riferisce come da descrizione all&#39;: <em>elenco delle prestazioni erogate dalla Regione Piemonte ai sensi della DGR 11-6036 del 02 luglio 2013, effettuate a livello ambulatoriale e non ambulatoriale o riferite a particolari attivita&#39;  svolte in attuazione di funzioni specificatamente attribuite, erogabili nell&#39; ambito del servizio sanitario regionale .</em> </p>
+
+<p>Il dato è presentato su 2 tabelle: </p>
+
+<ul>
+<li><p>elenco delle Prestazioni ed</p></li>
+<li><p>elenco delle Branche ( o Discipline).</p></li>
+</ul>
+
+<p>Quest&#39;ultimo utile per la decodifica del codice &ldquo;disciplina&rdquo; dell&#39;elenco delle prestazioni. </p>
+
+<p>Nell&#39;elenco delle <strong>Aziende Sanitarie</strong> per ogni azienda sono indicati il codice azienda, la denominazione e la data di attivazione.</p>
+
+<h3>Caratteristiche dei databases</h3>
+
+<h4>Prestazioni sanitarie</h4>
+
+<p>Il database <em>Prestazioni Sanitarie</em>, contiene 295643 osservazioni su  5 variabili.</p>
+
+<p>Ciascuna osservazione riporta:</p>
+
+<ul>
+<li><p>il codice azienda sanitaria, </p></li>
+<li><p>il codice prestazione, </p></li>
+<li><p>la relativa branca, </p></li>
+<li><p>l&#39;indicazione pubblico o privato,</p></li>
+<li><p>la quantità di prestazioni erogate.</p></li>
+</ul>
+
+<p>Al fine di poter interpretare i codici presenti nel database e&#39; necessario usare le informazioni relative ai tre dataset di corredo.</p>
+
+<p>La descrizione relativa al <em>codice azienda sanitaria</em> e&#39; sul dataset Aziende Sanitarie. Qui sono riportate</p>
+
+<ul>
+<li><p>il codice azienda</p></li>
+<li><p>la descrizione azienda</p></li>
+<li><p>la data di attivazione dell&#39;azienda.</p></li>
+</ul>
+
+<h4>Aziende sanitarie</h4>
+
+<p>Per le 29 aziende questo e&#39; un esempio delle informazioni riportate:</p>
+
+<pre><code>##   codazienda denom    dataatt
+## 1        201   TO1 01/01/2008
+## 2        202   TO2 01/01/2008
+## 3        203   TO3 01/01/2008
+## 4        204   TO4 01/01/2008
+## 5        205   TO5 01/01/2008
+</code></pre>
+
+<h4>Branca o Disciplina</h4>
+
+<p>La descrizione relativa alla <em>Branca o Disciplina</em> e&#39; sul dataset Branche. Qui sono riportate</p>
+
+<ul>
+<li><p>il codice branca</p></li>
+<li><p>la descrizione branca</p></li>
+</ul>
+
+<p>Per le 79 branche questo e&#39; un esempio delle informazioni riportate:</p>
+
+<pre><code>##   id cbranca                            bdescr
+## 1  1       1                      ALLERGOLOGIA
+## 2  2       2 DAY HOSPITAL (MULTISPECIALISTICO)
+## 3  3       3   ANATOMIA E ISTOLOGIA PATOLOGICA
+## 4  4       5                        ANGIOLOGIA
+## 5  5       6         CARDIOCHIRURGIA INFANTILE
+## 6  6       7                   CARDIOCHIRURGIA
+</code></pre>
+
+<p>La descrizione relativa alla <em>Prestazione</em> e&#39; sul dataset Prestazioni. Qui sono riportate</p>
+
+<ul>
+<li><p>il codice disciplina</p></li>
+<li><p>il codice prestazione</p></li>
+<li><p>la descrizione prestazione</p></li>
+</ul>
+
+<p>I dataset originario non e&#39; caricabile direttamente come gli altri a causa di caratteri speciali nel testo.</p>
+
+<p>Si e&#39; dovuto sostituire in caratteri (&ldquo;,&rdquo;, &ldquo;#&rdquo;, &ldquo;.&rdquo;) con il carattere &ldquo; &rdquo;.</p>
+
+<p>Per le 2337 branche questo e&#39; un esempio delle informazioni riportate:</p>
+
+<pre><code>##   cdiscip  cprest
+## 1       1   89_01
+## 2       1   89_07
+## 3       1   89_12
+## 4       1 89_12_A
+## 5       1 89_37_1
+## 6       1 89_37_4
+</code></pre>
+
+<p>Ci sono 43 codici disciplina in questo dataset. Nel dataset <em>Branca o Disciplina</em> ci sono 79 codici disciplina. Questo significa che 36 discipline non sono presenti. Segue l&#39;elenco di queste discipline.</p>
+
+<pre><code>##  [1] &quot;DAY HOSPITAL (MULTISPECIALISTICO)&quot;          
+##  [2] &quot;ANATOMIA E ISTOLOGIA PATOLOGICA&quot;            
+##  [3] &quot;CARDIOCHIRURGIA INFANTILE&quot;                  
+##  [4] &quot;CHIRURGIA PEDIATRICA&quot;                       
+##  [5] &quot;MEDICINA SPORTIVA&quot;                          
+##  [6] &quot;MEDICINA DEL LAVORO&quot;                        
+##  [7] &quot;MEDICINA LEGALE&quot;                            
+##  [8] &quot;UNITA  SPINALE&quot;                             
+##  [9] &quot;NIDO&quot;                                       
+## [10] &quot;MEDICINA TERMALE&quot;                           
+## [11] &quot;TOSSICOLOGIA&quot;                               
+## [12] &quot;GRANDI USTIONI PEDIATRICHE&quot;                 
+## [13] &quot;GRANDI USTIONATI&quot;                           
+## [14] &quot;NEFROLOGIA (ABILITATO AL TRAPIANTO DI RENE)&quot;
+## [15] &quot;TERAPIA INTENSIVA&quot;                          
+## [16] &quot;UNITA  CORONARICA&quot;                          
+## [17] &quot;ASTANTERIA&quot;                                 
+## [18] &quot;EMODIALISI&quot;                                 
+## [19] &quot;FARMACOLOGIA CLINICA&quot;                       
+## [20] &quot;FISIOPATOLOGIA DELLA RIPRODUZIONE UMANA&quot;    
+## [21] &quot;LUNGODEGENTI&quot;                               
+## [22] &quot;NEONATOLOGIA&quot;                               
+## [23] &quot;ONCOEMATOLOGIA PEDIATRICA&quot;                  
+## [24] &quot;ONCOEMATOLOGIA&quot;                             
+## [25] &quot;PENSIONANTI&quot;                                
+## [26] &quot;TERAPIA INTENSIVA NEONATALE&quot;                
+## [27] &quot;RADIOTERAPIA ONCOLOGICA&quot;                    
+## [28] &quot;NEURORIABILITAZIONE&quot;                        
+## [29] &quot;NEUROCHIRURGIA PEDIATRICA&quot;                  
+## [30] &quot;NEFROLOGIA PEDIATRICA&quot;                      
+## [31] &quot;UROLOGIA PEDIATRICA&quot;                        
+## [32] &quot;DETENUTI&quot;                                   
+## [33] &quot;DIABETOLOGIA&quot;                               
+## [34] &quot;RESIDUALE MANICOMIALE&quot;                      
+## [35] &quot;DISCIPLINA ATTIVITA SERT&quot;                   
+## [36] &quot;WEEK SURGERY&quot;
+</code></pre>
+
+<p>Ci sono poi prestazioni che compaiono su varie specialità.
+Ad esempio la prestazione 81.92, che corrisponde a INIEZIONE DI SOSTANZE TERAPEUTICHE NELL ARTICOLAZIONE O NEL LEGAMENTO è presente in varie discipline.</p>
+
+<pre><code>## [1] &quot;ORTOPEDIA E TRAUMATOLOGIA&quot;           
+## [2] &quot;RECUPERO E RIABILITAZIONE FUNZIONALE&quot;
+## [3] &quot;ONCOLOGIA&quot;                           
+## [4] &quot;REUMATOLOGIA&quot;
+</code></pre>
+
+<p>La somma complessiva di oltre 73 miloni di prestazioni si ripartisce sulle 27 aziende.</p>
+
+</body>
+
+</html>
+

@@ -22,9 +22,63 @@ head(BS)
 BS<-BS[order(BS$cbranca),]
 
 ###################
+CPx<- read.table ("data/Elenco_Regionale_Prestazioni_1.csv" , header=T, 
+                 sep=";", dec=",",   stringsAsFactors=F)
+str(CPx)                                 # 2337 obs.
+head(CPx)                                 # 2337 obs.
+names(CPx)  <-c( "cdiscip", "cprest" ,  "dprest",  "origine", "note")                 #  "cdiscip" "cprest"   "ddescr"  "ddiscip"
+str(CPx) 
+
+cdiscipf<-as.factor(CPx$cdiscip)
+str(cdiscipf)
+
+cbrancaf<- as.factor(BS$cbranca)
+str(cbrancaf)
+
+BS$bdescr[!cbrancaf%in%cdiscipf]
+
+
+unique(CPx$dprest[CPx$cprest=="81_92"])
+CPx[CPx$cprest=="81_92", 1:3]
+
+mydiscip<-CPx$cdiscip[CPx$cprest=="81_92"]
+sapply( mydiscip, function(x) BS$bdescr[BS$cbranca==x])
+
+
+
+
+
+        tt<-table(CPx$cprest)
+str(tt)
+
+table(tt)
+# tt<-tt[order(tt, decreasing = T)]
+ttt<-tt[tt>3]
+dim(ttt)
+
+tttx<-sapply (names(ttt), function(x)  unique (CPx$dprest[CPx$cprest==x]))
+str(tttx)
+names(tttx)
+values(tttx)
+
+double_pres<-cbind(names(ttt),ttt, tttx)
+colnames(double_pres)<-c("prest", "n_occ", "descr")
+str(double_pres)
+head(double_pres)
+dim(double_pres)
+
+double_pres<-as.data.frame(double_pres,stringsAsFactors=F)
+double_pres$n_occ<-as.numeric(double_pres$n_occ)
+double_pres<-double_pres[order(double_pres$n_occ, decreasing = T),]
+
+
+
+
+###################
 CP<- read.table ("data/Epres.csv" , header=T, 
                  sep=";", dec=",",   stringsAsFactors=F)
 str(CP)                                 # 2337 obs.
+head(CP)                                 # 2337 obs.
 
 
 ddiscip<-sapply (CP$cdiscip, function(x) BS$bdescr[BS$cbranca==x]) 
@@ -213,7 +267,7 @@ prestoto_no98 <- subset(prestoto, cbranca != 98)
 prestoto_no98 <- prestoto_no98[order(prestoto_no98$tipo),]
 
 ggplot(data=prestoto_no98, aes(x=factor(cbranca), y=qta/1e+06, fill = tipo)) + 
-  geom_bar(stat="identity") + coord_flip() +  
+  geom_bar(stat="identity", show_guide = F) + coord_flip() +  
   ggtitle("prestazioni per branca")+ 
   xlab("cod_prestazione") + ylab("n. prestazioni ") 
 ggsave("plot/prestazioni.png", width=8, height=8, dpi=100)
@@ -222,6 +276,14 @@ ggsave("plot/prestazioni.png", width=8, height=8, dpi=100)
 
 
 ###############################################################
+
+prestoto_98 <- subset(prestoto, cbranca == 98)
+
+ggplot(data=prestoto_98, aes(x=factor(nomeazienda), y=qta, fill = tipo)) + 
+    geom_bar(stat="identity", show_guide = F) + coord_flip() +  
+    ggtitle("prestazioni di analisi per azienda")+ 
+    xlab("Azienda") + ylab("n. prestazioni ") 
+ggsave("plot/analisi.png", width=8, height=8, dpi=100)
 
 prestoto_43 <- subset(prestoto, cbranca == 43)
 
