@@ -31,8 +31,8 @@ pres$azienda<-as.factor(pres$azienda)
 pres$cpres<-as.factor(pres$cpres)
 pres$cbranca<-as.factor(pres$cbranca)
 
-
-
+numpres<-length (unique(pres$cpres))
+meanpres<-as.integer(sum(pres$qta)/numpres)
 
 # str(pres)                              # 295643 obs. of  6 variables
 head(pres) 
@@ -41,7 +41,12 @@ head(pres)
 
 
 
-La somma complessiva delle prestazioni è oltre 73 miloni. 
+La somma complessiva delle prestazioni erogate è oltre 73 miloni.
+
+Considerando che sono presenti  `r numpres` prestazioni differenti ciascuna e' stata erogata mediamente `r meanpres` volte.
+
+
+#### plot  1
 
 La somma complessiva delle prestazioni si ripartisce sulle 27 aziende secondo la **figura 1** ( dove sono riportate in rosso le prestazioni in strutture private, in blu quelle in strutture pubbliche).
 
@@ -80,6 +85,8 @@ ggplot(data=prestoto, aes(x=factor(nomeazienda), y=qta/1e+06, fill = tipo)) +
 
 ```
 
+#### plot  2
+
 La somma complessiva delle prestazioni si ripartisce sulle 43  discipline  presenti nel dataset secondo la **figura 2**.
 
 Non e' stata qui riportata la disciplina 98 "ANALISI DI LABORATORIO" che totalizza, da sola, oltre 50 milioni di prestazioni.
@@ -97,6 +104,9 @@ ggplot(data=prestoto_no98, aes(x=factor(cbranca), y=qta/1e+06, fill = tipo)) +
 
 ```
 
+
+#### plot  3
+
 La somma complessiva delle prestazioni si ripartisce per la disciplina 98 "ANALISI DI LABORATORIO"  sulle diverse aziende sanitarie secondo la **figura 3**.
 
 
@@ -109,6 +119,9 @@ ggplot(data=prestoto_98, aes(x=factor(nomeazienda), y=qta/1e+06, fill = tipo)) +
     ggtitle("prestazioni di analisi per azienda")+ 
     xlab("Azienda") + ylab("prestazioni in Ml.") 
 ```
+
+
+#### plot  4
 
 La somma complessiva delle prestazioni si ripartisce per la disciplina 43 "UROLOGIA"  sulle diverse aziende sanitarie secondo la **figura 4**.
 
@@ -123,7 +136,9 @@ ggplot(data=prestoto_43, aes(x=factor(nomeazienda), y=qta, fill = tipo)) +
   xlab("Azienda") + ylab("n. prestazioni ") 
 ```
 
-Osserviamo ora le prestazioni svolte dall' azienda "213" corrispndente ad ALESSANDRIA in **figura 5**.
+#### plot  5
+
+Osserviamo ora le prestazioni svolte dall' azienda "213" corrispondente ad ALESSANDRIA in **figura 5**.
 
 ```{r plot5, fig.width= 9, echo=FALSE}
 prestoto_a213 <- subset(prestoto, azienda == 213 & cbranca != 98)
@@ -136,6 +151,9 @@ ggplot(data=prestoto_a213, aes(x=factor(cbranca), y=qta/1e+06, fill = tipo)) +
   ggtitle("totale prestazioni per AL")+ 
   xlab("cod_prestazione") + ylab("n. prestazioni ") 
 ```
+
+
+#### plot  6
 
 Osserviamo ora le prestazioni svolte dall' azienda "909" corrispndente ad CITTA_SALUTE in **figura 6**.
 
@@ -158,6 +176,9 @@ sum89<-round ((sum (pres_89.7$qta)/sum (pres$qta))*100,2)
 lcpres<-length(unique(pres$cpres))
 
 ```
+
+#### plot  7
+
 Da ultimo riportiamo la distribuzione di una singola prestazione con codice "89.7" e significato "VISITA GENERALE" che da sola totalizza `r sum89` %
 di tutte le `r lcpres` prestazioni.
 

@@ -107,7 +107,7 @@ I dataset originario non e' caricabile direttamente come gli altri a causa di ca
 
 Si e' dovuto sostituire in caratteri (",", "#", ".") con il carattere " ".
 
-Per le 2337 branche questo e' un esempio delle informazioni riportate:
+Per le 2337 osservazioni del dataset questo e' un esempio delle informazioni riportate:
 
 
 ```
@@ -166,7 +166,7 @@ Ci sono 43 codici disciplina in questo dataset. Nel dataset *Branca o Disciplina
 
 
 
-Ci sono poi prestazioni che compaiono su varie specialità.
+Delle 2053 prestazioni presenti, ci sono poi prestazioni che compaiono su varie specialità.
 Ad esempio la prestazione 81.92, che corrisponde a INIEZIONE DI SOSTANZE TERAPEUTICHE NELL ARTICOLAZIONE O NEL LEGAMENTO è presente in quattro discipline.
 
 

@@ -102,7 +102,7 @@ I dataset originario non e' caricabile direttamente come gli altri a causa di ca
 
 Si e' dovuto sostituire in caratteri (",", "#", ".") con il carattere " ".
 
-Per le 2337 branche questo e' un esempio delle informazioni riportate:
+Per le 2337 osservazioni del dataset questo e' un esempio delle informazioni riportate:
 
 ```{r, echo=FALSE}
 CPx<- read.table ("~/GitHub/sanita/data/Elenco_Regionale_Prestazioni_1.csv" , header=T, 
@@ -110,7 +110,7 @@ CPx<- read.table ("~/GitHub/sanita/data/Elenco_Regionale_Prestazioni_1.csv" , he
 # str(CPx)                        
 names(CPx)  <-c( "cdiscip", "cprest" ,  "dprest",  "origine", "note") 
 head(CPx) [,1:2]                            
-          
+mypres<- length(unique(CPx$cprest))        
 
 ```
 
@@ -129,14 +129,14 @@ BS$bdescr[!cbrancaf%in%cdiscipf]
 
 ```{r, echo=FALSE}
 
-mypres<-unique(CPx$dprest[CPx$cprest=="81_92"])
+mypres81<-unique(CPx$dprest[CPx$cprest=="81_92"])
 
 ```
 
 
 
-Ci sono poi prestazioni che compaiono su varie specialità.
-Ad esempio la prestazione 81.92, che corrisponde a `r mypres` è presente in quattro discipline.
+Delle `r mypres` prestazioni presenti, ci sono poi prestazioni che compaiono su varie specialità.
+Ad esempio la prestazione 81.92, che corrisponde a `r mypres81` è presente in quattro discipline.
 
 ```{r, echo=FALSE}
 
