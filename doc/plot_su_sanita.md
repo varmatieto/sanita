@@ -3,7 +3,7 @@ Prestazioni sanitarie in Regione Piemonte
 
 ### Fonte
 
-Sul sito dedicati agli [Opendata] (http://www.dati.piemonte.it)  sono stai pubblicati le [Prestazioni sanitarie erogate per tipologia di prestazione] (http://www.dati.piemonte.it/catalogodati/dato/100742-prestazioni-sanitarie-erogate-per-tipologia-di-prestazione.html ).
+Sul sito dedicati agli [Opendata] (http://www.dati.piemonte.it)  sono stai pubblicati le [Prestazioni sanitarie erogate nel 2012] (http://rpubs.com/varmatieto/19289).
 
 Il database *Prestazioni Sanitarie*, contiene 295643 osservazioni su  5 variabili.
 
@@ -23,13 +23,13 @@ Le prime osservazioni del database risultano:
 
 
 ```
-##   id azienda tipo cbranca   cpres  qta
-## 1  1     202 Priv      69   88.27  520
-## 2  2     201 Priv      98 90.23.5 3598
-## 3  3     202  Pub      98 90.44.3  140
-## 4  4     212  Pub      98 90.69.4 8317
-## 5  5     909  Pub      98 90.76.1  618
-## 6  6     909  Pub      98 90.23.3  648
+##   azienda tipo cbranca   cpres  qta
+## 1     202 Priv      69   88.27  520
+## 2     201 Priv      98 90.23.5 3598
+## 3     202  Pub      98 90.44.3  140
+## 4     212  Pub      98 90.69.4 8317
+## 5     909  Pub      98 90.76.1  618
+## 6     909  Pub      98 90.23.3  648
 ```
 
 

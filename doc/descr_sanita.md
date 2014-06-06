@@ -3,20 +3,20 @@ Prestazioni sanitarie in Regione Piemonte
 
 ### Fonte
 
-Sul sito dedicati agli [Opendata] (http://www.dati.piemonte.it)  sono stai pubblicati le [Prestazioni sanitarie erogate per tipologia di prestazione] (http://www.dati.piemonte.it/catalogodati/dato/100742-prestazioni-sanitarie-erogate-per-tipologia-di-prestazione.html ).
+Sul sito dedicati agli [Opendata] (http://www.dati.piemonte.it)  sono state pubblicate le [Prestazioni sanitarie erogate nell'anno 2012] (http://www.dati.piemonte.it/catalogodati/dato/100742-prestazioni-sanitarie-erogate-per-tipologia-di-prestazione.html ).
 
 
 Nel dataset sono riportati i volumi di **prestazioni sanitarie**, intesi come quantità di prestazioni erogate per azienda sanitaria, con l'evidenza della tipologia di struttura erogatrice ( pubblica o privata
 ), del codice di prestazione e della relativa branca specialistica, nell'anno 2012 a livello regionale. 
 
-Insieme al database delle prestazioni sono disponibili alcuni datset  di supporto che riguardano:
+Insieme al dataset delle prestazioni sono disponibili alcuni datset  di supporto che riguardano:
 
-- il Catalogo delle prestazioni sanitarie,
+- il catalogo delle prestazioni sanitarie,
 
 - l'elenco delle Aziende Sanitarie.
 
 
-Il Catalogo delle **prestazioni specialistiche sanitarie** si riferisce come da descrizione all': *elenco delle prestazioni erogate dalla Regione Piemonte ai sensi della DGR 11-6036 del 02 luglio 2013, effettuate a livello ambulatoriale e non ambulatoriale o riferite a particolari attivita'  svolte in attuazione di funzioni specificatamente attribuite, erogabili nell' ambito del servizio sanitario regionale .* 
+Il catalogo delle **prestazioni specialistiche sanitarie** si riferisce come da descrizione all': *elenco delle prestazioni erogate dalla Regione Piemonte ai sensi della DGR 11-6036 del 02 luglio 2013, effettuate a livello ambulatoriale e non ambulatoriale o riferite a particolari attivita'  svolte in attuazione di funzioni specificatamente attribuite, erogabili nell' ambito del servizio sanitario regionale .* 
 
 Il dato è presentato su 2 tabelle: 
 
@@ -31,11 +31,11 @@ Nell'elenco delle **Aziende Sanitarie** per ogni azienda sono indicati il codice
 
 
 
-### Caratteristiche dei databases
+### Caratteristiche dei datasets
 
-#### Prestazioni sanitarie
+#### Prestazioni sanitarie erogate
 
-Il database *Prestazioni Sanitarie*, contiene 295643 osservazioni su  5 variabili.
+Il dataset *Prestazioni Sanitarie*, contiene 295643 osservazioni su  5 variabili.
 
 Ciascuna osservazione riporta:
 
@@ -50,7 +50,7 @@ Ciascuna osservazione riporta:
 - la quantità di prestazioni erogate.
 
 
-Al fine di poter interpretare i codici presenti nel database e' necessario usare le informazioni relative ai tre dataset di corredo.
+Al fine di poter interpretare i codici presenti nel dataset e' necessario usare le informazioni relative ai tre dataset di corredo.
 
 La descrizione relativa al *codice azienda sanitaria* e' sul dataset Aziende Sanitarie. Qui sono riportate
 
@@ -60,7 +60,7 @@ La descrizione relativa al *codice azienda sanitaria* e' sul dataset Aziende San
 
 - la data di attivazione dell'azienda.
 
-#### Aziende sanitarie
+#### Elenco Aziende sanitarie
 
 Per le 29 aziende questo e' un esempio delle informazioni riportate:
 
@@ -74,7 +74,7 @@ Per le 29 aziende questo e' un esempio delle informazioni riportate:
 ## 5        205   TO5 01/01/2008
 ```
 
-#### Branca o Disciplina
+#### Elenco Branca o Disciplina
 
 La descrizione relativa alla *Branca o Disciplina* e' sul dataset Branche. Qui sono riportate
 
@@ -94,6 +94,7 @@ Per le 79 branche questo e' un esempio delle informazioni riportate:
 ## 5  5       6         CARDIOCHIRURGIA INFANTILE
 ## 6  6       7                   CARDIOCHIRURGIA
 ```
+#### Elenco Prestazioni sanitarie
 
 La descrizione relativa alla *Prestazione* e' sul dataset Prestazioni. Qui sono riportate
 
@@ -105,7 +106,7 @@ La descrizione relativa alla *Prestazione* e' sul dataset Prestazioni. Qui sono 
 
 I dataset originario non e' caricabile direttamente come gli altri a causa di caratteri speciali nel testo.
 
-Si e' dovuto sostituire in caratteri (",", "#", ".") con il carattere " ".
+Si e' dovuto sostituire in caratteri (",", "#", ".") con il caratteri non sensitivi al formato .csv impiegato.
 
 Per le 2337 osservazioni del dataset questo e' un esempio delle informazioni riportate:
 
@@ -120,7 +121,11 @@ Per le 2337 osservazioni del dataset questo e' un esempio delle informazioni rip
 ## 6       1 89_37_4
 ```
 
-Ci sono 43 codici disciplina in questo dataset. Nel dataset *Branca o Disciplina* ci sono 79 codici disciplina. Questo significa che 36 discipline non sono presenti. Segue l'elenco di queste discipline.
+Si assume che il codice disciplina qui presente abbia lo stesso significato del codice branca del dataset Elenco Branche.
+
+Ci sono 43 codici disciplina in questo dataset. Nel dataset *Branca o Disciplina* ci sono 79 codici disciplina. Questo significa che 36 discipline non sono presenti nell'elenco di dettaglio delle prestazioni. 
+
+Segue l'elenco delle discipline presenti nell' elenco branche ma non in quello prestazioni.
 
 
 ```
@@ -166,7 +171,7 @@ Ci sono 43 codici disciplina in questo dataset. Nel dataset *Branca o Disciplina
 
 
 
-Delle 2053 prestazioni presenti, ci sono poi prestazioni che compaiono su varie specialità.
+Delle 2053 prestazioni presenti, ci sono poi prestazioni che compaiono su varie discipline o branche.
 Ad esempio la prestazione 81.92, che corrisponde a INIEZIONE DI SOSTANZE TERAPEUTICHE NELL ARTICOLAZIONE O NEL LEGAMENTO è presente in quattro discipline.
 
 

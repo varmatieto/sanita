@@ -7,3 +7,8 @@
 <style>
 h4 {page-break-before: always;}
 </style>
+
+
+http://rpubs.com/varmatieto/19289
+
+http://rpubs.com/varmatieto/19290
